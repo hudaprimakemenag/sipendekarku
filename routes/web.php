@@ -81,6 +81,10 @@ Route::middleware('auth')->group(function () {
 });
 
 /* ── Static asset: design-system CSS ─────────────────────────────────── */
+Route::get('/sipendekarku.css', function () {
+    return response()->file(base_path('styles.css'), ['Content-Type' => 'text/css; charset=UTF-8']);
+})->name('sipendekarku.styles');
+
 Route::get('/amalin.css', function () {
     return response()->file(base_path('styles.css'), ['Content-Type' => 'text/css; charset=UTF-8']);
 })->name('amalin.styles');

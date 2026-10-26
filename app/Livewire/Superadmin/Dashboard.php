@@ -13,7 +13,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('layouts.app')]
-#[Title('Superadmin Dashboard — AMALIN')]
+#[Title('Superadmin Dashboard — SIPENDEKARKU')]
 class Dashboard extends Component
 {
     public function render()

@@ -45,7 +45,7 @@ new class extends Component
     <div class="sidebar-backdrop" :class="{ 'active': menuOpen }" @click="menuOpen = false"></div>
     <aside class="sidebar" :class="{ 'open': menuOpen }">
         <div class="sidebar-header">
-            <a class="brand" href="{{ route('dashboard') }}"><span class="brand-mark">✦</span><span><b>AMALIN</b></span></a>
+            <a class="brand" href="{{ route('dashboard') }}"><span class="brand-mark">✦</span><span><b>SIPENDEKARKU</b></span></a>
             <button type="button" class="sidebar-close-btn" @click="menuOpen = false" aria-label="Tutup menu">✕</button>
         </div>
         <div class="school"><span class="school-icon">⌂</span><div><b>SDIT Al-Hikmah</b><small>2026/2027 · Ganjil</small></div><span class="swap">⌄</span></div>

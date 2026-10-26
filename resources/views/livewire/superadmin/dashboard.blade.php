@@ -2,7 +2,7 @@
     <div class="panel-header">
         <div>
             <p class="eyebrow">PORTAL SUPERADMIN GLOBAL</p>
-            <h1 style="font-size: 24px; font-weight: 800; color: var(--dark);">Dashboard Pusat AMALIN</h1>
+            <h1 style="font-size: 24px; font-weight: 800; color: var(--dark);">Dashboard Pusat SIPENDEKARKU</h1>
             <p style="color: var(--slate-500); font-size: 13px;">Kelola multi-sekolah (multi-tenant), master katalog kegiatan global, dan pantau statistik lintas institusi.</p>
         </div>
         <div style="display: flex; gap: 10px; flex-wrap: wrap;">

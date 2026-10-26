@@ -15,7 +15,7 @@ use Livewire\WithPagination;
 use Spatie\Permission\Models\Role;
 
 #[Layout('layouts.app')]
-#[Title('Kelola Siswa & Penempatan — AMALIN')]
+#[Title('Kelola Siswa & Penempatan — SIPENDEKARKU')]
 class Students extends Component
 {
     use WithPagination;

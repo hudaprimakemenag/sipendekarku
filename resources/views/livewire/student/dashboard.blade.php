@@ -1,7 +1,7 @@
 <div>
     <section class="welcome">
         <div>
-            <p class="eyebrow">{{ now()->translatedFormat('l, d F Y') }} <span>•</span> AMALIN</p>
+            <p class="eyebrow">{{ now()->translatedFormat('l, d F Y') }} <span>•</span> SIPENDEKARKU</p>
             <h1>Assalamu'alaikum, {{ auth()->user()->name }} <span>🌿</span></h1>
             <p class="subtle">Yuk, isi mutaba'ah hari ini dengan jujur, istiqomah, dan penuh semangat.</p>
         </div>

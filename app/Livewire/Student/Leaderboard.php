@@ -12,7 +12,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 
 #[Layout('layouts.app')]
-#[Title('Poin & Leaderboard — AMALIN')]
+#[Title('Poin & Leaderboard — SIPENDEKARKU')]
 class Leaderboard extends Component
 {
     use WithPagination;

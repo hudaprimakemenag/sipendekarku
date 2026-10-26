@@ -9,7 +9,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('layouts.app')]
-#[Title('Katalog Kegiatan Global — AMALIN')]
+#[Title('Katalog Kegiatan Global — SIPENDEKARKU')]
 class Catalog extends Component
 {
     public bool $showGroupModal = false;

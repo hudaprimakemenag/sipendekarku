@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>Masuk — AMALIN</title>
+    <title>Masuk — SIPENDEKARKU</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ route('amalin.styles') }}">
+    <link rel="stylesheet" href="{{ route('sipendekarku.styles') }}">
     <style>
         body.auth-page {
             margin: 0;
@@ -37,7 +37,7 @@
             position: relative;
             z-index: 1;
             width: 100%;
-            max-width: 440px;
+            max-width: 480px;
             margin: auto;
         }
 
@@ -50,49 +50,62 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 8px 16px;
+            padding: 6px 16px 6px 10px;
             background: #ffffff;
-            border: 1px solid var(--slate-200);
+            border: 1px solid rgba(5, 150, 105, 0.22);
             border-radius: var(--radius-full);
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
-            margin-bottom: 16px;
+            box-shadow: 0 4px 14px rgba(5, 150, 105, 0.08);
+            margin-bottom: 14px;
         }
 
-        .auth-brand-icon {
-            display: grid;
-            place-items: center;
+        .auth-brand-logo {
             width: 28px;
             height: 28px;
-            border-radius: 8px;
-            background: var(--emerald);
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: 800;
+            object-fit: contain;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.12));
         }
 
-        .auth-brand-text {
-            font-size: 14px;
+        .auth-brand-tag {
+            font-size: 11px;
             font-weight: 700;
-            color: var(--dark);
-            letter-spacing: -0.01em;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--emerald-dark);
         }
 
-        .auth-brand-text span {
+        .auth-app-title {
+            margin: 0 0 6px 0;
+            font-size: 32px;
+            font-weight: 850;
+            letter-spacing: -0.02em;
+            color: #0f172a;
+            line-height: 1.15;
+        }
+
+        .auth-app-title .brand-accent {
             color: var(--emerald);
         }
 
-        .auth-title {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            color: var(--dark);
-            margin-bottom: 6px;
+        .auth-app-desc-pill {
+            display: inline-block;
+            margin: 4px auto 10px auto;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #065f46;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(5, 150, 105, 0.22);
+            border-radius: 999px;
+            line-height: 1.4;
+            letter-spacing: 0.1px;
+            box-shadow: 0 1px 3px rgba(5, 150, 105, 0.04);
         }
 
         .auth-subtitle {
             font-size: 13px;
             color: var(--slate-500);
             line-height: 1.5;
+            margin: 0;
         }
 
         .auth-card {
@@ -403,8 +416,13 @@
                 border-radius: var(--radius-lg);
             }
 
-            .auth-title {
-                font-size: 21px;
+            .auth-app-title {
+                font-size: 26px;
+            }
+
+            .auth-app-desc-pill {
+                font-size: 11px;
+                padding: 5px 12px;
             }
 
             .auth-demo-grid {
@@ -434,11 +452,19 @@
     <div class="auth-container">
         <header class="auth-header">
             <div class="auth-brand-badge">
-                <span class="auth-brand-icon">✦</span>
-                <span class="auth-brand-text">AMALIN</span>
+                <img src="{{ asset('images/kemenag.svg') }}" alt="Logo Kemenag" class="auth-brand-logo">
+                <span class="auth-brand-tag">Kemenag Kab. Kulon Progo</span>
             </div>
-            <h1 class="auth-title">Selamat Datang</h1>
-            <p class="auth-subtitle">Masuk ke akun Anda untuk mencatat dan memonitor mutaba'ah</p>
+
+            <h1 class="auth-app-title">
+                SIPENDEKAR<span class="brand-accent">KU</span>
+            </h1>
+
+            <div class="auth-app-desc-pill">
+                Sistem Informasi Pendidikan Karakter Anak Kulon Progo
+            </div>
+
+            <p class="auth-subtitle">Masuk ke akun Anda untuk mencatat dan memonitor pembiasaan karakter peserta didik</p>
         </header>
 
         <div class="auth-card">
@@ -563,8 +589,8 @@
         </div>
 
         <footer class="auth-footer">
-            <p>&copy; {{ date('Y') }} AMALIN · Sistem Monitoring Mutaba'ah Siswa</p>
-            <p class="auth-quote">“Amal yang paling dicintai Allah adalah yang berkelanjutan meski sedikit.”</p>
+            <p>&copy; {{ date('Y') }} <strong>SIPENDEKARKU</strong> · Sistem Informasi Pendidikan Karakter Anak Kulon Progo</p>
+            <p class="auth-quote">Kementerian Agama Kabupaten Kulon Progo</p>
         </footer>
     </div>
 

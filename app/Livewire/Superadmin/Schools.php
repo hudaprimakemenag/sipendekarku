@@ -13,7 +13,7 @@ use Livewire\Component;
 use Spatie\Permission\Models\Role;
 
 #[Layout('layouts.app')]
-#[Title('Kelola Sekolah — AMALIN')]
+#[Title('Kelola Sekolah — SIPENDEKARKU')]
 class Schools extends Component
 {
     public bool $showModal = false;

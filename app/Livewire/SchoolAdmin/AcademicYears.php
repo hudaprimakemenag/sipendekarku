@@ -10,7 +10,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('layouts.app')]
-#[Title('Tahun Ajaran & Semester — AMALIN')]
+#[Title('Tahun Ajaran & Semester — SIPENDEKARKU')]
 class AcademicYears extends Component
 {
     public bool $showYearModal = false;

@@ -73,7 +73,7 @@ class DatabaseSeeder extends Seeder
         /* ── 4. Users ─────────────────────────────────────────────── */
         $superadmin = User::firstOrCreate(
             ['email' => 'superadmin@tarbiyah.id'],
-            ['name' => 'Superadmin AMALIN', 'password' => Hash::make('password')]
+            ['name' => 'Superadmin SIPENDEKARKU', 'password' => Hash::make('password')]
         );
         $superadmin->syncRoles([$superadminRole]);
 

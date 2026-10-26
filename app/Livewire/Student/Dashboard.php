@@ -15,7 +15,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('layouts.app')]
-#[Title('Mutaba\'ah Hari Ini — AMALIN')]
+#[Title('Mutaba\'ah Hari Ini — SIPENDEKARKU')]
 class Dashboard extends Component
 {
     public string $activeGroup = 'all';

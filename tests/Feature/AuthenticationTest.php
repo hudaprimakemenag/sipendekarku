@@ -16,7 +16,7 @@ class AuthenticationTest extends TestCase
         $response = $this->get('/login');
 
         $response->assertStatus(200);
-        $response->assertSee('AMALIN');
+        $response->assertSee('SIPENDEKARKU');
         $response->assertSee('Masuk ke Aplikasi');
         $response->assertSee('Alamat Email');
     }

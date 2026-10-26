@@ -13,7 +13,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('layouts.app')]
-#[Title('Pemantauan Anak — AMALIN')]
+#[Title('Pemantauan Anak — SIPENDEKARKU')]
 class Dashboard extends Component
 {
     public ?int $selectedChildId = null;

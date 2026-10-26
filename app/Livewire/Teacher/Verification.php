@@ -13,7 +13,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('layouts.app')]
-#[Title('Verifikasi Kegiatan — AMALIN')]
+#[Title('Verifikasi Kegiatan — SIPENDEKARKU')]
 class Verification extends Component
 {
     public ?int $selectedClassId = null;

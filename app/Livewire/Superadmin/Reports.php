@@ -11,7 +11,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('layouts.app')]
-#[Title('Laporan Lintas Sekolah — AMALIN')]
+#[Title('Laporan Lintas Sekolah — SIPENDEKARKU')]
 class Reports extends Component
 {
     public function render()

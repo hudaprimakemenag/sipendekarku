@@ -11,7 +11,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('layouts.app')]
-#[Title('Riwayat Kegiatan — AMALIN')]
+#[Title('Riwayat Kegiatan — SIPENDEKARKU')]
 class History extends Component
 {
     public string $selectedMonth = '';

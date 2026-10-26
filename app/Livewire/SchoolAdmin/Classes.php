@@ -10,7 +10,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('layouts.app')]
-#[Title('Kelola Kelas — AMALIN')]
+#[Title('Kelola Kelas — SIPENDEKARKU')]
 class Classes extends Component
 {
     public bool $showModal = false;

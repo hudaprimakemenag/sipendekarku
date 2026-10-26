@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $title ?? 'AMALIN — Monitoring Kegiatan Siswa' }}</title>
+    <title>{{ $title ?? 'SIPENDEKARKU — Sistem Informasi Pendidikan Karakter Anak Kulon Progo' }}</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ route('amalin.styles') }}">
+    <link rel="stylesheet" href="{{ route('sipendekarku.styles') }}">
     
     <style>
         /* Additional Custom Utilities for CRUD & Reports */
@@ -294,8 +294,8 @@
                 <a class="brand" href="{{ route('dashboard') }}" style="gap: 12px; align-items: center;">
                     <img src="{{ asset('images/kemenag.svg') }}" alt="Logo Kemenag" style="width: 36px; height: 36px; flex-shrink: 0; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
                     <span style="display: flex; flex-direction: column; line-height: 1.2;">
-                        <b style="font-size: 18px; font-weight: 800; letter-spacing: 0.5px; color: var(--dark);">AMALIN</b>
-                        <small style="font-size: 10px; font-weight: 600; color: var(--emerald-dark); letter-spacing: 0.3px;">Monitoring Siswa</small>
+                        <b style="font-size: 17px; font-weight: 800; letter-spacing: 0.3px; color: var(--dark);">SIPENDEKARKU</b>
+                        <small style="font-size: 9px; font-weight: 600; color: var(--emerald-dark); letter-spacing: 0.2px; line-height: 1.1;">Pendidikan Karakter Kulon Progo</small>
                     </span>
                 </a>
                 <button type="button" class="sidebar-close-btn" @click="menuOpen = false" aria-label="Tutup menu">✕</button>
@@ -306,7 +306,7 @@
             <div class="school">
                 <span class="school-icon">⌂</span>
                 <div>
-                    <b>{{ $school?->name ?? 'Pusat AMALIN' }}</b>
+                    <b>{{ $school?->name ?? 'Pusat SIPENDEKARKU' }}</b>
                     <small>{{ $academicYear?->name ?? '2026/2027' }} · {{ $semester?->name ?? 'Ganjil' }}</small>
                 </div>
             </div>
@@ -405,7 +405,7 @@
             <header class="topbar">
                 <button class="menu-btn" @click="menuOpen = !menuOpen" aria-label="Buka menu">☰</button>
                 <div class="breadcrumb">
-                    <span>{{ $breadcrumbSection ?? 'AMALIN' }}</span>
+                    <span>{{ $breadcrumbSection ?? 'SIPENDEKARKU' }}</span>
                     <strong> / </strong>
                     <b>{{ $breadcrumbTitle ?? 'Dashboard' }}</b>
                 </div>

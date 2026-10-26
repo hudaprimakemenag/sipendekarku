@@ -11,7 +11,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('layouts.app')]
-#[Title('Laporan & Ranking Sekolah — AMALIN')]
+#[Title('Laporan & Ranking Sekolah — SIPENDEKARKU')]
 class Reports extends Component
 {
     public string $selectedClassId = 'all';
