@@ -292,7 +292,7 @@
         <aside class="sidebar" :class="{ 'open': menuOpen }">
             <div class="sidebar-header">
                 <a class="brand" href="{{ route('dashboard') }}" style="gap: 12px; align-items: center;">
-                    <img src="{{ asset('images/kemenag.svg') }}" alt="Logo Kemenag" style="width: 36px; height: 36px; flex-shrink: 0; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
+                    <img src="{{ asset('images/logokemenag.png') }}" alt="Logo Kemenag" style="width: 36px; height: 36px; flex-shrink: 0; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
                     <span style="display: flex; flex-direction: column; line-height: 1.2;">
                         <b style="font-size: 17px; font-weight: 800; letter-spacing: 0.3px; color: var(--dark);">SIPENDEKARKU</b>
                         <small style="font-size: 9px; font-weight: 600; color: var(--emerald-dark); letter-spacing: 0.2px; line-height: 1.1;">Pendidikan Karakter Kulon Progo</small>

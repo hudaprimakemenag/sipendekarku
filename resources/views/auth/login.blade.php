@@ -452,7 +452,7 @@
     <div class="auth-container">
         <header class="auth-header">
             <div class="auth-brand-badge">
-                <img src="{{ asset('images/kemenag.svg') }}" alt="Logo Kemenag" class="auth-brand-logo">
+                <img src="{{ asset('images/logokemenag.png') }}" alt="Logo Kemenag" class="auth-brand-logo">
                 <span class="auth-brand-tag">Kemenag Kab. Kulon Progo</span>
             </div>
 
@@ -556,7 +556,7 @@
             </form>
 
             {{-- Quick Demo Account Selector --}}
-            <div class="auth-demo-wrap">
+            <!-- <div class="auth-demo-wrap">
                 <div class="auth-demo-header">
                     <span class="auth-demo-title">
                         <span>⚡</span> Akses Cepat Akun Demo
@@ -585,7 +585,7 @@
                         <span class="auth-demo-chip-email">superadmin@tarbiyah.id</span>
                     </button>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <footer class="auth-footer">
