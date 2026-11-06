@@ -87,7 +87,7 @@ class User extends Authenticatable
     {
         return match ($this->primaryRole()) {
             'superadmin' => 'superadmin.dashboard',
-            'school_admin' => 'admin.dashboard',
+            'school_admin' => 'teacher.dashboard',
             'teacher' => 'teacher.dashboard',
             'parent' => 'parent.dashboard',
             default => 'student.dashboard',

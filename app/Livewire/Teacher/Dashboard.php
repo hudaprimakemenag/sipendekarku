@@ -4,12 +4,15 @@ namespace App\Livewire\Teacher;
 
 use App\Models\ClassStudent;
 use App\Models\ClassTeacher;
+use App\Models\SchoolClass;
 use App\Models\StudentActivityLog;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Spatie\Permission\Models\Role;
 
 #[Layout('layouts.app')]
 #[Title('Dashboard Guru — SIPENDEKARKU')]
@@ -58,6 +61,18 @@ class Dashboard extends Component
             ->distinct('student_id')
             ->count('student_id');
 
+        // Modul Manajemen Sekolah (Dipindahkan dari Admin Sekolah)
+        $totalClasses = SchoolClass::where('school_id', $school?->id)->count();
+        $totalSchoolStudents = Role::where('name', 'student')->where('guard_name', 'web')->exists()
+            ? User::role('student')->where('school_id', $school?->id)->count()
+            : 0;
+        $totalSchoolTeachers = Role::where('name', 'teacher')->where('guard_name', 'web')->exists()
+            ? User::role('teacher')->where('school_id', $school?->id)->count()
+            : 0;
+        $totalSchoolParents = Role::where('name', 'parent')->where('guard_name', 'web')->exists()
+            ? User::role('parent')->where('school_id', $school?->id)->count()
+            : 0;
+
         return view('livewire.teacher.dashboard', [
             'teacher' => $teacher,
             'school' => $school,
@@ -67,6 +82,10 @@ class Dashboard extends Component
             'pendingYesterdayCount' => $pendingYesterdayCount,
             'totalVerifiedWeek' => $totalVerifiedWeek,
             'totalStudents' => $totalStudents,
+            'totalClasses' => $totalClasses,
+            'totalSchoolStudents' => $totalSchoolStudents,
+            'totalSchoolTeachers' => $totalSchoolTeachers,
+            'totalSchoolParents' => $totalSchoolParents,
         ]);
     }
 }

@@ -77,7 +77,7 @@
                         <h3 style="font-size: 18px; font-weight: 800; color: var(--dark); margin-bottom: 4px;">
                             {{ $schoolClass?->name ?? 'Kelas' }}
                         </h3>
-                        <p style="font-size: 12px; color: var(--slate-500);">SDIT Al-Hikmah</p>
+                        <p style="font-size: 12px; color: var(--slate-500);">{{ $school?->name ?? 'Sekolah' }}</p>
                     </div>
 
                     <div style="display: flex; gap: 8px;">
@@ -91,9 +91,70 @@
                 </div>
             @empty
                 <div style="grid-column: 1 / -1; text-align: center; color: var(--slate-400); padding: 36px;">
-                    Anda belum ditugaskan ke kelas manapun pada semester ini. Silakan hubungi Admin Sekolah.
+                    Anda belum ditugaskan ke kelas ampu manapun pada semester ini. Anda dapat mengelola penugasan kelas melalui menu <b>Kelola Kelas</b> atau <b>Guru Pengampu</b> di atas.
                 </div>
             @endforelse
+        </div>
+    </div>
+
+    <!-- Modul Manajemen Sekolah (Dipindahkan dari Role Admin Sekolah) -->
+    <div class="panel">
+        <div class="panel-header">
+            <div>
+                <h2 class="panel-title">Modul Manajemen Sekolah</h2>
+                <p style="font-size: 12px; color: var(--slate-500);">Pengelolaan struktur kelas, data siswa, guru pengampu, wali murid, dan tahun ajaran sekolah.</p>
+            </div>
+            <span class="badge badge-success">Administrasi Sekolah</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px;">
+            <a href="{{ route('teacher.classes') }}" style="text-decoration: none; color: inherit; border: 1px solid var(--line); border-radius: var(--radius-md); padding: 16px; background: #fafafa; display: flex; flex-direction: column; gap: 8px; transition: all 0.15s ease;">
+                <div style="font-size: 24px;">⌂</div>
+                <div>
+                    <b style="font-size: 14px; color: var(--dark); display: block;">Kelola Kelas</b>
+                    <small style="color: var(--slate-500); font-size: 11px;">{{ $totalClasses }} Kelas Terdaftar</small>
+                </div>
+            </a>
+
+            <a href="{{ route('teacher.students') }}" style="text-decoration: none; color: inherit; border: 1px solid var(--line); border-radius: var(--radius-md); padding: 16px; background: #fafafa; display: flex; flex-direction: column; gap: 8px; transition: all 0.15s ease;">
+                <div style="font-size: 24px;">🤼</div>
+                <div>
+                    <b style="font-size: 14px; color: var(--dark); display: block;">Data & Penempatan Siswa</b>
+                    <small style="color: var(--slate-500); font-size: 11px;">{{ $totalSchoolStudents }} Siswa Sekolah</small>
+                </div>
+            </a>
+
+            <a href="{{ route('teacher.teachers') }}" style="text-decoration: none; color: inherit; border: 1px solid var(--line); border-radius: var(--radius-md); padding: 16px; background: #fafafa; display: flex; flex-direction: column; gap: 8px; transition: all 0.15s ease;">
+                <div style="font-size: 24px;">♟</div>
+                <div>
+                    <b style="font-size: 14px; color: var(--dark); display: block;">Guru Pengampu</b>
+                    <small style="color: var(--slate-500); font-size: 11px;">{{ $totalSchoolTeachers }} Guru Terdaftar</small>
+                </div>
+            </a>
+
+            <a href="{{ route('teacher.parents') }}" style="text-decoration: none; color: inherit; border: 1px solid var(--line); border-radius: var(--radius-md); padding: 16px; background: #fafafa; display: flex; flex-direction: column; gap: 8px; transition: all 0.15s ease;">
+                <div style="font-size: 24px;">👪</div>
+                <div>
+                    <b style="font-size: 14px; color: var(--dark); display: block;">Wali Murid & Relasi</b>
+                    <small style="color: var(--slate-500); font-size: 11px;">{{ $totalSchoolParents }} Akun Wali</small>
+                </div>
+            </a>
+
+            <a href="{{ route('teacher.academic-years') }}" style="text-decoration: none; color: inherit; border: 1px solid var(--line); border-radius: var(--radius-md); padding: 16px; background: #fafafa; display: flex; flex-direction: column; gap: 8px; transition: all 0.15s ease;">
+                <div style="font-size: 24px;">◷</div>
+                <div>
+                    <b style="font-size: 14px; color: var(--dark); display: block;">Tahun & Semester</b>
+                    <small style="color: var(--slate-500); font-size: 11px;">{{ $school?->activeAcademicYear?->name ?? '2026/2027' }}</small>
+                </div>
+            </a>
+
+            <a href="{{ route('teacher.school-reports') }}" style="text-decoration: none; color: inherit; border: 1px solid var(--line); border-radius: var(--radius-md); padding: 16px; background: #fafafa; display: flex; flex-direction: column; gap: 8px; transition: all 0.15s ease;">
+                <div style="font-size: 24px;">▤</div>
+                <div>
+                    <b style="font-size: 14px; color: var(--dark); display: block;">Laporan & Ranking</b>
+                    <small style="color: var(--slate-500); font-size: 11px;">Rekap Nilai Sekolah</small>
+                </div>
+            </a>
         </div>
     </div>
 </div>

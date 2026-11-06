@@ -18,8 +18,14 @@ use App\Livewire\Superadmin\Dashboard as SuperadminDashboard;
 use App\Livewire\Superadmin\Reports as SuperadminReports;
 use App\Livewire\Superadmin\Schools as SuperadminSchools;
 use App\Livewire\Superadmin\Users as SuperadminUsers;
+use App\Livewire\Teacher\AcademicYears as TeacherAcademicYears;
+use App\Livewire\Teacher\Classes as TeacherClasses;
 use App\Livewire\Teacher\ClassReport as TeacherClassReport;
 use App\Livewire\Teacher\Dashboard as TeacherDashboard;
+use App\Livewire\Teacher\Parents as TeacherParents;
+use App\Livewire\Teacher\SchoolReports as TeacherSchoolReports;
+use App\Livewire\Teacher\Students as TeacherStudents;
+use App\Livewire\Teacher\Teachers as TeacherTeachers;
 use App\Livewire\Teacher\Verification as TeacherVerification;
 use Illuminate\Support\Facades\Route;
 
@@ -43,11 +49,20 @@ Route::middleware('auth')->group(function () {
         Route::get('/leaderboard', StudentLeaderboard::class)->name('leaderboard');
     });
 
-    /* ── Guru ───────────────────────────────────────────────────────── */
-    Route::middleware('role:teacher')->prefix('teacher')->name('teacher.')->group(function () {
+    /* ── Guru (Termasuk Semua Modul Admin Sekolah) ──────────────────── */
+    Route::middleware('role:teacher|school_admin')->prefix('teacher')->name('teacher.')->group(function () {
         Route::get('/dashboard', TeacherDashboard::class)->name('dashboard');
         Route::get('/verification', TeacherVerification::class)->name('verification');
         Route::get('/reports', TeacherClassReport::class)->name('reports');
+
+        // Modul Admin Sekolah yang dipindahkan ke Guru
+        Route::get('/classes', TeacherClasses::class)->name('classes');
+        Route::get('/academic-years', TeacherAcademicYears::class)->name('academic-years');
+        Route::get('/teachers', TeacherTeachers::class)->name('teachers');
+        Route::get('/students', TeacherStudents::class)->name('students');
+        Route::get('/parents', TeacherParents::class)->name('parents');
+        Route::get('/school-reports', TeacherSchoolReports::class)->name('school-reports');
+        Route::get('/school-dashboard', AdminDashboard::class)->name('school-dashboard');
     });
 
     /* ── Wali Murid ─────────────────────────────────────────────────── */
@@ -55,15 +70,15 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard', ParentDashboard::class)->name('dashboard');
     });
 
-    /* ── Admin Sekolah ──────────────────────────────────────────────── */
-    Route::middleware('role:school_admin')->prefix('admin')->name('admin.')->group(function () {
+    /* ── Admin Sekolah (Alias & Kompatibilitas) ──────────────────────── */
+    Route::middleware('role:school_admin|teacher')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/dashboard', AdminDashboard::class)->name('dashboard');
-        Route::get('/academic-years', AdminAcademicYears::class)->name('academic-years');
-        Route::get('/classes', AdminClasses::class)->name('classes');
-        Route::get('/teachers', AdminTeachers::class)->name('teachers');
-        Route::get('/students', AdminStudents::class)->name('students');
-        Route::get('/parents', AdminParents::class)->name('parents');
-        Route::get('/reports', AdminReports::class)->name('reports');
+        Route::get('/academic-years', TeacherAcademicYears::class)->name('academic-years');
+        Route::get('/classes', TeacherClasses::class)->name('classes');
+        Route::get('/teachers', TeacherTeachers::class)->name('teachers');
+        Route::get('/students', TeacherStudents::class)->name('students');
+        Route::get('/parents', TeacherParents::class)->name('parents');
+        Route::get('/reports', TeacherSchoolReports::class)->name('reports');
     });
 
     /* ── Superadmin ─────────────────────────────────────────────────── */

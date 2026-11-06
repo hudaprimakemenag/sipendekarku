@@ -139,9 +139,8 @@
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(4px);
-            z-index: 100;
+            background: rgba(15, 23, 42, 0.65);
+            z-index: 9999;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -272,6 +271,16 @@
             border: 1px solid var(--rose-border);
             color: var(--rose);
         }
+
+        /* User Dropdown */
+        .user-dropdown-item:hover {
+            background: var(--slate-100, #f1f5f9) !important;
+            color: var(--dark) !important;
+        }
+        .user-dropdown-logout:hover {
+            background: #ffe4e6 !important;
+            color: #e11d48 !important;
+        }
     </style>
     @livewireStyles
 </head>
@@ -323,8 +332,8 @@
                     <a class="{{ request()->routeIs('student.leaderboard') ? 'active' : '' }}" href="{{ route('student.leaderboard') }}">
                         <span>✦</span> Poin & Ranking
                     </a>
-                @elseif ($role === 'teacher')
-                    <a class="{{ request()->routeIs('teacher.dashboard') ? 'active' : '' }}" href="{{ route('teacher.dashboard') }}">
+                @elseif ($role === 'teacher' || $role === 'school_admin')
+                    <a class="{{ request()->routeIs('teacher.dashboard', 'admin.dashboard') ? 'active' : '' }}" href="{{ route('teacher.dashboard') }}">
                         <span>▦</span> Beranda Guru
                     </a>
                     <a class="{{ request()->routeIs('teacher.verification') ? 'active' : '' }}" href="{{ route('teacher.verification') }}">
@@ -333,31 +342,32 @@
                     <a class="{{ request()->routeIs('teacher.reports') ? 'active' : '' }}" href="{{ route('teacher.reports') }}">
                         <span>▤</span> Laporan Kelas
                     </a>
+
+                    <div style="padding: 12px 14px 4px 14px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--slate-400);">
+                        Manajemen Sekolah
+                    </div>
+
+                    <a class="{{ request()->routeIs('teacher.classes', 'admin.classes') ? 'active' : '' }}" href="{{ route('teacher.classes') }}">
+                        <span>⌂</span> Kelola Kelas
+                    </a>
+                    <a class="{{ request()->routeIs('teacher.academic-years', 'admin.academic-years') ? 'active' : '' }}" href="{{ route('teacher.academic-years') }}">
+                        <span>◷</span> Tahun & Semester
+                    </a>
+                    <a class="{{ request()->routeIs('teacher.teachers', 'admin.teachers') ? 'active' : '' }}" href="{{ route('teacher.teachers') }}">
+                        <span>♟</span> Data & Guru Pengampu
+                    </a>
+                    <a class="{{ request()->routeIs('teacher.students', 'admin.students') ? 'active' : '' }}" href="{{ route('teacher.students') }}">
+                        <span>🤼</span> Data & Penempatan Siswa
+                    </a>
+                    <a class="{{ request()->routeIs('teacher.parents', 'admin.parents') ? 'active' : '' }}" href="{{ route('teacher.parents') }}">
+                        <span>👪</span> Wali Murid & Relasi
+                    </a>
+                    <a class="{{ request()->routeIs('teacher.school-reports', 'admin.reports') ? 'active' : '' }}" href="{{ route('teacher.school-reports') }}">
+                        <span>▤</span> Laporan & Ranking Sekolah
+                    </a>
                 @elseif ($role === 'parent')
                     <a class="{{ request()->routeIs('parent.dashboard') ? 'active' : '' }}" href="{{ route('parent.dashboard') }}">
                         <span>▦</span> Pemantauan Anak
-                    </a>
-                @elseif ($role === 'school_admin')
-                    <a class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
-                        <span>▦</span> Beranda Sekolah
-                    </a>
-                    <a class="{{ request()->routeIs('admin.classes') ? 'active' : '' }}" href="{{ route('admin.classes') }}">
-                        <span>⌂</span> Kelola Kelas
-                    </a>
-                    <a class="{{ request()->routeIs('admin.academic-years') ? 'active' : '' }}" href="{{ route('admin.academic-years') }}">
-                        <span>◷</span> Tahun & Semester
-                    </a>
-                    <a class="{{ request()->routeIs('admin.teachers') ? 'active' : '' }}" href="{{ route('admin.teachers') }}">
-                        <span>♟</span> Data & Guru Pengampu
-                    </a>
-                    <a class="{{ request()->routeIs('admin.students') ? 'active' : '' }}" href="{{ route('admin.students') }}">
-                        <span>🤼</span> Data & Penempatan Siswa
-                    </a>
-                    <a class="{{ request()->routeIs('admin.parents') ? 'active' : '' }}" href="{{ route('admin.parents') }}">
-                        <span>👪</span> Wali Murid & Relasi
-                    </a>
-                    <a class="{{ request()->routeIs('admin.reports') ? 'active' : '' }}" href="{{ route('admin.reports') }}">
-                        <span>▤</span> Laporan & Ranking
                     </a>
                 @elseif ($role === 'superadmin')
                     <a class="{{ request()->routeIs('superadmin.dashboard') ? 'active' : '' }}" href="{{ route('superadmin.dashboard') }}">
@@ -419,7 +429,86 @@
                             default => 'Siswa Aktif',
                         } }}
                     </span>
-                    <div class="avatar">{{ strtoupper(substr($user?->name ?? 'US', 0, 2)) }}</div>
+                    {{-- Avatar Singkatan Nama dengan Dropdown Menu (Hover & Klik) --}}
+                    <div class="user-menu-dropdown-wrap" 
+                         x-data="{ open: false }" 
+                         @mouseenter="open = true" 
+                         @mouseleave="open = false" 
+                         @click.outside="open = false" 
+                         style="position: relative; display: inline-block;">
+
+                        <button type="button" 
+                                @click="open = !open" 
+                                class="avatar-trigger-btn" 
+                                aria-haspopup="true" 
+                                :aria-expanded="open" 
+                                title="Menu Pengguna: {{ $user?->name ?? 'Pengguna' }}" 
+                                style="background: transparent; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; gap: 6px; border-radius: var(--radius-full); outline: none;">
+                            <div class="avatar" 
+                                 style="transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); user-select: none; cursor: pointer;" 
+                                 :style="open ? 'box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.35); transform: scale(1.05);' : ''">
+                                {{ strtoupper(substr($user?->name ?? 'US', 0, 2)) }}
+                            </div>
+                            <span style="font-size: 10px; color: var(--slate-400); transition: transform 0.2s ease;" :style="open ? 'transform: rotate(180deg);' : ''">▾</span>
+                        </button>
+
+                        {{-- Dropdown Popup --}}
+                        <div x-show="open" 
+                             x-transition:enter="transition ease-out duration-150"
+                             x-transition:enter-start="opacity-0 transform scale-95 -translate-y-1"
+                             x-transition:enter-end="opacity-100 transform scale-100 translate-y-0"
+                             x-transition:leave="transition ease-in duration-100"
+                             x-transition:leave-start="opacity-100 transform scale-100 translate-y-0"
+                             x-transition:leave-end="opacity-0 transform scale-95 -translate-y-1"
+                             class="user-dropdown-menu"
+                             style="position: absolute; right: 0; top: calc(100% + 6px); width: 250px; background: #ffffff; border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); z-index: 60; overflow: hidden;"
+                             x-cloak>
+                            
+                            {{-- Info Akun --}}
+                            <div style="padding: 12px 16px; border-bottom: 1px solid var(--line); background: var(--slate-50, #f8fafc);">
+                                <div style="font-size: 13px; font-weight: 700; color: var(--dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    {{ $user?->name ?? 'Pengguna' }}
+                                </div>
+                                <div style="font-size: 11px; color: var(--slate-500); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    {{ $user?->email }}
+                                </div>
+                                <div style="margin-top: 8px;">
+                                    <span class="badge badge-success" style="font-size: 10px; padding: 2px 8px;">
+                                        {{ match($role) {
+                                            'superadmin' => 'Superadmin Global',
+                                            'school_admin' => 'Admin Sekolah',
+                                            'teacher' => 'Guru Pengampu',
+                                            'parent' => 'Wali Murid',
+                                            default => 'Siswa Aktif',
+                                        } }}
+                                    </span>
+                                </div>
+                            </div>
+
+                            {{-- Menu Aksi --}}
+                            <div style="padding: 6px;">
+                                <button type="button" 
+                                        @click="open = false; $dispatch('open-change-password')" 
+                                        class="user-dropdown-item" 
+                                        style="width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; font-size: 13px; font-weight: 600; color: var(--slate-700); background: transparent; border: none; border-radius: var(--radius-md); cursor: pointer; text-align: left; transition: all 0.15s ease;">
+                                    <span style="font-size: 16px;">🔑</span>
+                                    <span>Ubah Kata Sandi</span>
+                                </button>
+
+                                <div style="height: 1px; background: var(--line); margin: 4px 6px;"></div>
+
+                                <form method="POST" action="{{ route('logout') }}" style="margin: 0;">
+                                    @csrf
+                                    <button type="submit" 
+                                            class="user-dropdown-item user-dropdown-logout" 
+                                            style="width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; font-size: 13px; font-weight: 600; color: var(--rose, #e11d48); background: transparent; border: none; border-radius: var(--radius-md); cursor: pointer; text-align: left; transition: all 0.15s ease;">
+                                        <span style="font-size: 16px;">🚪</span>
+                                        <span>Keluar (Logout)</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </header>
 
@@ -428,6 +517,9 @@
             </div>
         </main>
     </div>
+
+    <!-- Modal Ubah Kata Sandi (Render di root body, di luar header agar tidak terisolasi backdrop-filter header) -->
+    <livewire:auth.change-password />
 
     @livewireScripts
 </body>
